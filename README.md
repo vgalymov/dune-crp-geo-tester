@@ -29,3 +29,5 @@ source localProducts_09_58_02_e20_prof/setup
 mrbslp 
 setup dunesw v09_58_02d00 -q e20:prof 
 ```
+check with `ups active` that the desired product installed in `localProducts_xxxx` is set up.
+
