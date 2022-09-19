@@ -15,3 +15,9 @@ python3 -m venv mplot
 source mplot/bin/activate
 pip install matplotlib PyQt5
 ```
+
+once the dump file `<ascii_dump_file>.txt` is produced, one can draw its content for a given plane
+```
+python WireDumpDraw.py -f <ascii_dump_file>.txt -p <0, 1, or 2>
+```
+optionally one can specify to draw only every ith wire with `-s` argument (default is 16).
