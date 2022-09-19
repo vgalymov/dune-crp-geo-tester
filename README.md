@@ -8,3 +8,10 @@ To make a dump file grep on "FLAG"
 ```
 lar -c checkgeovdtpc.fcl | grep FLAG > <ascii_dump_file>.txt
 ```
+
+For matplolib install use venv:
+```
+python3 -m venv mplot
+source mplot/bin/activate
+pip install matplotlib PyQt5
+```
