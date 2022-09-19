@@ -21,3 +21,11 @@ once the dump file `<ascii_dump_file>.txt` is produced, one can draw its content
 python WireDumpDraw.py -f <ascii_dump_file>.txt -p <0, 1, or 2>
 ```
 optionally one can specify to draw only every ith wire with `-s` argument (default is 16).
+
+Example setup local product (version 09_58_02 and qualifier e20:prof here)
+```
+source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+source localProducts_09_58_02_e20_prof/setup
+mrbslp 
+setup dunesw v09_58_02d00 -q e20:prof 
+```
