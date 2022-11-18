@@ -1,10 +1,9 @@
+#!/usr/bin/env python3
+
 import sys
 import re
 import math
 import argparse
-#import numpy as np
-#import matplotlib.pyplot as plt
-
 
 class bcolors:
     HEADER = '\033[95m'
