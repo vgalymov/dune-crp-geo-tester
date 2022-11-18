@@ -38,7 +38,8 @@ class wire:
         return l
         
 
-        
+#
+#
 def get_channels_from_dump( fname ):
     chans = {}
     
@@ -65,7 +66,8 @@ def get_channels_from_dump( fname ):
                 continue
     return chans
 
-    
+#
+#
 def check_totch_count( chan_record, nch_exp ):
     chk_name = 'check_totch_count'
     nch    = len(chan_record)
@@ -78,6 +80,8 @@ def check_totch_count( chan_record, nch_exp ):
     print_ok( msg )
     return True
 
+#
+#
 def check_viewch_count( chan_record, crpch, ncrp ):
     chk_name = 'check_viewch_count'
     # first check that all channels follow each other
