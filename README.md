@@ -62,3 +62,16 @@ Expected number of channel per CRP : 3072
 Expected number of total channels  : 33792
 [ FAIL ] [check_totch_count] Total number of channels expected / found: 33792 / 36864
 ```
+
+# Draw _strip_ lengths for each plane
+Draw strip lengths per plane with `StripLenDraw.py` script:
+
+Example for `plane = 0` (should be identical to induction 1 if the ROPs are correctly built):
+```
+python StripLenDraw.py -f wiredump_1x8x6_v181122.txt -p 0
+Analyzing the file wiredump_1x8x6_v181122.txt
+Expected number of channel per CRP : 3072
+Single wires :  758
+Multi wires  :  194
+```
+The drawing function separately draws channels assigned to a single wire and multiple wires in different color. The breakdown for the two cases is also given. 
