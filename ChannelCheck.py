@@ -5,6 +5,8 @@ import re
 import math
 import argparse
 
+import utils
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -41,29 +43,23 @@ class wire:
 #
 def get_channels_from_dump( fname ):
     chans = {}
-    
-    with open(fname) as fin:
-        for line in fin:
-            lst = line.split(' ')
-            sval = 0
-            if( line.startswith("FLAG") ): sval = 1
-            try:
-                ch  = int(lst[sval])
-                tid = int(lst[sval+2])
-                pid = int(lst[sval+3])
-                wid = int(lst[sval+4])
-                x0  = float(lst[sval+6])
-                y0  = float(lst[sval+7])
-                x1  = float(lst[sval+9])
-                y1  = float(lst[sval+10])
+    wire_data = utils.read_dump_file( fname )
+    for r in wire_data:
+        ch = r['ch']
+        tid = r['tpc']
+        pid = r['plane']
+        wid = r['wire']
+        x0  = r['start'][1]
+        y0  = r['start'][2]
+        x1  = r['stop'][1]
+        y1  = r['stop'][2]
+        
+        w = wire( tid, pid, wid, x0, y0, x1, y1 )
+        if( not ch in chans ): chans[ch] = []
+        chans[ch].append( w )
 
-                w = wire( tid, pid, wid, x0, y0, x1, y1 )
-                if( not ch in chans ): chans[ch] = []
-                chans[ch].append( w )
-
-            except (ValueError, IndexError):
-                continue
     return chans
+
 
 #
 #

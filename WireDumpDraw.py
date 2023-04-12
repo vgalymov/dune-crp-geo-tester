@@ -4,6 +4,7 @@ import math
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
+import utils
 
 ##
 class geo_wire:
@@ -54,29 +55,17 @@ def init( fname, ntpc):
         t.add_plane( t._id, 1)
         t.add_plane( t._id, 2)
 
-    
-    with open(fname) as fin:
-        for line in fin:
-            lst = line.split(' ')
-            #print(len(lst))
-            sval = 0
-            if( line.startswith("FLAG") ): sval = 1
-            try:
-                ch  = int(lst[sval])
-                tid = int(lst[sval+2])
-                pid = int(lst[sval+3])
-                wid = int(lst[sval+4])
-                x0  = float(lst[sval+6])
-                y0  = float(lst[sval+7])
-                x1  = float(lst[sval+9])
-                y1  = float(lst[sval+10])
-                
-                tpcs[tid].add_wire(tid, pid, ch, wid, [[x0,y0], [x1,y1]])
-            except (ValueError, IndexError):
-                #print("bad format {}".format(line))
-                continue
-            
-
+    wire_data = utils.read_dump_file( fname )
+    for r in wire_data:
+        ch  = r['ch']
+        tid = r['tpc']
+        pid = r['plane']
+        wid = r['wire']
+        x0  = r['start'][1]
+        y0  = r['start'][2]
+        x1  = r['stop'][1]
+        y1  = r['stop'][2]
+        tpcs[tid].add_wire(tid, pid, ch, wid, [[x0,y0], [x1,y1]])
 
     #for t in tpcs:
     #    print(t.n())
